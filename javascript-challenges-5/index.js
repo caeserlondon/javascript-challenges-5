@@ -60,8 +60,19 @@ let products = [
 
 /// solution 1
 
+// function getUnique(arr) {
+// 	let tempArr = arr.map((item) => item.company);
+// 	return [...new Set(tempArr)];
+// }
+// console.log(getUnique(products));
+
+/// solution 2
 function getUnique(arr) {
-	let tempArr = arr.map((item) => item.company);
-	return [...new Set(tempArr)];
+	return [
+		...arr.reduce((acc, curr) => {
+			acc.add(curr.company);
+			return acc;
+		}, new Set()),
+	];
 }
 console.log(getUnique(products));
