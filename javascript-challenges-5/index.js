@@ -179,23 +179,72 @@
 //prime number = can only be divided by itself or one.
 
 /// solution 1
-function isPrime(num) {
-	if (num < 2) {
-		return false;
-	}
-	for (let i = 2; i < num; i++) {
-		if (num % i === 0) {
-			return false;
+// function isPrime(num) {
+// 	if (num < 2) {
+// 		return false;
+// 	}
+// 	for (let i = 2; i < num; i++) {
+// 		if (num % i === 0) {
+// 			return false;
+// 		}
+// 	}
+// 	return true;
+// }
+
+// console.log(isPrime(8));
+// // false
+// console.log(isPrime(11));
+// // true
+// console.log(isPrime(121));
+// // false
+// console.log(isPrime(127));
+// // true
+
+///////// solution 2 : faster for big numbers.
+
+// function isPrime(num) {
+// 	if (num < 2) {
+// 		return false;
+// 	}
+// 	let root = Math.ceil(Math.sqrt(num));
+
+// 	for (let i = 2; i <= root; i++) {
+// 		if (num % i === 0) {
+// 			return false;
+// 		}
+// 	}
+// 	return true;
+// }
+
+// console.log(isPrime(8));
+// // false
+// console.log(isPrime(11));
+// // true
+// console.log(isPrime(121));
+// // false
+// console.log(isPrime(127));
+// // true
+////////////////////////////////////////////////
+
+//// CHALLENGE 7
+/// count repeating letters
+/// string will not contain numbers or sumbols..  only letters
+
+function countLetters(str) {
+	let tempArr = str.split("");
+	let letters = [];
+	let count = 1;
+
+	for (let i = 0; i < tempArr.length; i++) {
+		if (tempArr[i] === tempArr[i + 1]) {
+			count++;
+		} else {
+			let value = `${count}${tempArr[i]}`;
+			letters = [...letters, value];
+			count = 1;
 		}
 	}
-	return true;
+	return letters.join("");
 }
-
-console.log(isPrime(8));
-// false
-console.log(isPrime(11));
-// true
-console.log(isPrime(121));
-// false
-console.log(isPrime(127));
-// true
+console.log(countLetters("ffffeerttttooo"));
+/// should return 4f2e1r4t3o
