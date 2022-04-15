@@ -178,8 +178,17 @@
 ///// CHALLENGE 6
 //prime number = can only be divided by itself or one.
 
+/// solution 1
 function isPrime(num) {
-	return num;
+	if (num < 2) {
+		return false;
+	}
+	for (let i = 2; i < num; i++) {
+		if (num % i === 0) {
+			return false;
+		}
+	}
+	return true;
 }
 
 console.log(isPrime(8));
