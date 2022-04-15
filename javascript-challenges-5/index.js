@@ -81,33 +81,59 @@
 /// CHALLENGE 3
 //return first word with the greatest number of repeated letters
 
-function countLetters(str) {
-	let tempArr = str.split(" ");
-	tempArr = tempArr.map((item) => {
-		let tempItemArr = item.toLowerCase().split("");
-		return tempItemArr.reduce(
-			(acc, curr) => {
-				acc[curr] = acc[curr] ? acc[curr] + 1 : 1;
-				if (acc[curr] > acc.max) {
-					acc.max = acc[curr];
-				}
-				return acc;
-			},
-			{ max: 1, word: item }
-		);
-	});
-	let amount = 1;
-	let word = "";
-	for (let item of tempArr) {
-		if (item.max > amount) {
-			amount = item.max;
-			word = item.word;
-		}
-	}
-	if (amount > 1) {
-		return word;
-	}
+// function countLetters(str) {
+// 	let tempArr = str.split(" ");
+// 	tempArr = tempArr.map((item) => {
+// 		let tempItemArr = item.toLowerCase().split("");
+// 		return tempItemArr.reduce(
+// 			(acc, curr) => {
+// 				acc[curr] = acc[curr] ? acc[curr] + 1 : 1;
+// 				if (acc[curr] > acc.max) {
+// 					acc.max = acc[curr];
+// 				}
+// 				return acc;
+// 			},
+// 			{ max: 1, word: item }
+// 		);
+// 	});
+// 	let amount = 1;
+// 	let word = "";
+// 	for (let item of tempArr) {
+// 		if (item.max > amount) {
+// 			amount = item.max;
+// 			word = item.word;
+// 		}
+// 	}
+// 	if (amount > 1) {
+// 		return word;
+// 	}
 
-	return -1;
+// 	return -1;
+// }
+// console.log(countLetters("Javascript is the greatest programming languageee"));
+
+////////////////////
+
+//////////// CHALLENGE 4
+//// sort the array and find the second item from right and from left.
+/// delete dublicate
+
+function secondValue(arr) {
+	let values = [...new Set(arr)].sort((a, b) => a - b);
+	if (values.length < 2) {
+		return `${values[0]}`;
+	} else if (values.length === 2) {
+		return `${values[0]} ${values[1]}`;
+	} else {
+		return `${values[1]} ${values[values.length - 2]}`;
+	}
 }
-console.log(countLetters("Javascript is the greatest programming languageee"));
+
+console.log(secondValue([1]));
+//1
+console.log(secondValue([4, 2]));
+// 2 4
+console.log(secondValue([11, 44, 22]));
+//11,22,44 === 22 , 22
+console.log(secondValue([3, 2, 88, 3, -11, 67, 7]));
+// -11,2,3,7,67,88 === 2 , 67
