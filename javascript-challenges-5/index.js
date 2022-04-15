@@ -26,7 +26,7 @@
 // //true
 // console.log(unique("abacdefb"));
 // //false
-//////////////////////////
+///////////////////////////////////////////////////////////////
 
 //// CHALLENGE 2
 /// find unique object property values
@@ -58,7 +58,7 @@
 // 	},
 // ];
 
-// /// solution 1
+// /////// solution 1
 
 // // function getUnique(arr) {
 // // 	let tempArr = arr.map((item) => item.company);
@@ -77,7 +77,8 @@
 // }
 // console.log(getUnique(products));
 
-////////////////
+////////////////////////////////////////////////////
+
 /// CHALLENGE 3
 //return first word with the greatest number of repeated letters
 
@@ -112,28 +113,62 @@
 // }
 // console.log(countLetters("Javascript is the greatest programming languageee"));
 
-////////////////////
+///////////////////////////////////////////////////////
 
-//////////// CHALLENGE 4
-//// sort the array and find the second item from right and from left.
-/// delete dublicate
+// //////////// CHALLENGE 4
+// //// sort the array and find the second item from right and from left.
+// /// delete dublicate
 
-function secondValue(arr) {
-	let values = [...new Set(arr)].sort((a, b) => a - b);
-	if (values.length < 2) {
-		return `${values[0]}`;
-	} else if (values.length === 2) {
-		return `${values[0]} ${values[1]}`;
-	} else {
-		return `${values[1]} ${values[values.length - 2]}`;
-	}
+// function secondValue(arr) {
+// 	let values = [...new Set(arr)].sort((a, b) => a - b);
+// 	if (values.length < 2) {
+// 		return `${values[0]}`;
+// 	} else if (values.length === 2) {
+// 		return `${values[0]} ${values[1]}`;
+// 	} else {
+// 		return `${values[1]} ${values[values.length - 2]}`;
+// 	}
+// }
+
+// console.log(secondValue([1]));
+// //1
+// console.log(secondValue([4, 2]));
+// // 2 4
+// console.log(secondValue([11, 44, 22]));
+// //11,22,44 === 22 , 22
+// console.log(secondValue([3, 2, 88, 3, -11, 67, 7]));
+// // -11,2,3,7,67,88 === 2 , 67
+
+//////////////////////////////////////////////////////
+
+///////  CHALLENGE 5
+/// return number with most repeat
+/// if two numbers are repeated then repeat the first
+/// if none repeated then return -1
+
+function testRepeat(arr) {
+	let max = 1;
+	let position = 0;
+	let value = -1;
+	let tempNumbers = arr.reduce((acc, curr, index) => {
+		acc[curr] = acc[curr]
+			? { ...acc[curr], amount: acc[curr]["amount"] + 1 }
+			: { amount: 1, index };
+		let amount = acc[curr].amount;
+		let place = acc[curr].index;
+		if (amount > max || (amount === max && place <= position && amount > 1)) {
+			max = amount;
+			value = curr;
+			position = place;
+		}
+		return acc;
+	}, {});
+	return value;
 }
 
-console.log(secondValue([1]));
-//1
-console.log(secondValue([4, 2]));
-// 2 4
-console.log(secondValue([11, 44, 22]));
-//11,22,44 === 22 , 22
-console.log(secondValue([3, 2, 88, 3, -11, 67, 7]));
-// -11,2,3,7,67,88 === 2 , 67
+console.log(testRepeat([5, 2, 2, 1, 5]));
+// return 5
+console.log(testRepeat([6, 5, 5, 10, 10, 10]));
+// return 10
+console.log(testRepeat([3, 4, 1, 6, 10]));
+// return -1;
