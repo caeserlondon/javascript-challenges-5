@@ -248,3 +248,15 @@ function countLetters(str) {
 }
 console.log(countLetters("ffffeerttttooo"));
 /// should return 4f2e1r4t3o
+
+//////////////////////////////////////////
+
+///// chalange 8
+///   RegEx palindrome
+function isPalindrom(str) {
+	return str;
+}
+console.log(isPalindrom("race car"));
+///true
+console.log(isPalindrom("caeser"));
+/// false
